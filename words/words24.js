@@ -58,7 +58,8 @@ const WORDS24 = [
   {"no":2357,"word":"usual","star":false,"pos":"形","meaning":"いつもの、ふつうの","example":"Rice with miso soup is my usual breakfast.","circle":true},
   {"no":2358,"word":"usually","star":true,"pos":"副","meaning":"ふつう、たいてい","example":"I usually get up at 6 o'clock.","circle":false},
   {"no":2359,"word":"vacation","star":true,"pos":"名","meaning":"休暇、休み","example":"What are you going to do during summer vacation?","circle":false},
-  {"no":2360,"word":"vacuum cleaner","star":false,"pos":"名","meaning":"掃除機（vacuumのみでもよい）","example":"This vacuum cleaner is small but very powerful.","circle":true},
+
+  {"no":2360,"word":"vacuum cleaner（vacuum）","star":false,"pos":"名","meaning":"掃除機","example":"This vacuum cleaner is small but very powerful.","circle":true},
   {"no":2361,"word":"valuable","star":false,"pos":"形","meaning":"高価な、貴重な","example":"What is the most valuable thing to you?","circle":true},
   {"no":2362,"word":"van","star":false,"pos":"名","meaning":"小型トラック、ワゴン車、バン","example":"We traveled around Hokkaido in a van.","circle":true},
   {"no":2363,"word":"variety","star":false,"pos":"名","meaning":"バラエティー、変化に富むこと\n※variety show   バラエティー・ショー    a variety of ～ 様々な～","example":"I watched variety shows on TV yesterday.","circle":false},
