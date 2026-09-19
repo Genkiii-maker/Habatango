@@ -44,7 +44,7 @@ const WORDS08 = [
 {"no":743,"word":"everything","star":false,"pos":"代","meaning":"すべてのこと（もの）","example":"Everything is OK.","circle":false},
 {"no":744,"word":"everywhere","star":false,"pos":"副","meaning":"いたるところ、どこでも","example":"In Japan, you can see sushi restaurants everywhere.","circle":false},
 {"no":745,"word":"exactly","star":false,"pos":"副","meaning":"正確に、ちょうど、（答えに使って）そのとおりです","example":"It is exactly 9 o'clock now.","circle":true},
-{"no":746,"word":"exam","star":false,"pos":"名","meaning":"試験（examinationを短くした形）　※entrance exam    入学試験","example":"We are going to have an exam next week.","circle":false},
+{"no":746,"word":"exam（examination）","star":false,"pos":"名","meaning":"試験　※entrance exam    入学試験","example":"We are going to have an exam next week.","circle":false},
 {"no":747,"word":"example","star":false,"pos":"名","meaning":"例、実例　　※for example  例えば","example":"Let's look at two examples.","circle":false},
 {"no":748,"word":"excellent","star":false,"pos":"形","meaning":"非常に優れた、優秀な","example":"Your report is excellent.","circle":false},
 {"no":749,"word":"exchange","star":false,"pos":"名","meaning":"交換","example":"Our city has a student exchange program with Korea.","circle":false},
