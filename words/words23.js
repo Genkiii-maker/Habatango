@@ -58,7 +58,7 @@ const WORDS23 = [
   {"no":2257,"word":"tonight","star":false,"pos":"副・名","meaning":"今夜（は）","example":"The stars are so beautiful tonight.","circle":false},
   {"no":2258,"word":"too","star":true,"pos":"副","meaning":"①（～も）また　\n②あまりに（～）すぎる　\n※Me, too. 私も 　too ～ to …　あまりにも～なので…できない","example":"①A: I like dogs.  B: Me, too. \n②I am too tired to do this homework.","circle":false},
   {"no":2259,"word":"tool","star":false,"pos":"名","meaning":"手段、道具","example":"English is a tool for communication.","circle":false},
-  {"no":2260,"word":"tooth","star":true,"pos":"名","meaning":"歯　　【複数】 teeth","example":"Brush your teeth before you go to bed.","circle":false},
+  {"no":2260,"word":"tooth【複】teeth","star":true,"pos":"名","meaning":"歯","example":"Brush your teeth before you go to bed.","circle":false},
   {"no":2261,"word":"toothache","star":false,"pos":"名","meaning":"歯痛","example":"I have a toothache.  I need to see a dentist.","circle":false},
   {"no":2262,"word":"toothbrush","star":false,"pos":"名","meaning":"歯ブラシ","example":"You should change your toothbrush every month.","circle":true},
   {"no":2263,"word":"top","star":false,"pos":"名・形","meaning":"一番上の部分（の）、頂上（の）、てっぺん（の）","example":"Can you see the top of Mt. Maya from here?","circle":false},
