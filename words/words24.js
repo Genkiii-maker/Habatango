@@ -40,7 +40,7 @@ const WORDS24 = [
   {"no":2339,"word":"unicycle","star":true,"pos":"名","meaning":"一輪車","example":"I liked riding a unicycle in elementary school.","circle":true},
   {"no":2340,"word":"uniform","star":false,"pos":"名","meaning":"制服、ユニフォーム","example":"I like my school uniform.","circle":false},
   {"no":2341,"word":"unique","star":false,"pos":"形","meaning":"特有の、独特の","example":"I saw some unique animals there.","circle":false},
-  {"no":2342,"word":"United Kingdom","star":false,"pos":"名","meaning":"イギリス（正式国名は、The United Kingdom of Great Britain and Northern Ireland）　※U.K.（UK） （省略語）","example":"Football is the most popular sport in the United Kingdom.","circle":false},
+  {"no":2342,"word":"United Kingdom（U.K.）","star":false,"pos":"名","meaning":"イギリス（正式国名は、The United Kingdom of Great Britain and Northern Ireland）","example":"Football is the most popular sport in the United Kingdom.","circle":false},
   {"no":2343,"word":"United Nations","star":false,"pos":"名","meaning":"国際連合　　※U.N.（UN）(省略語)","example":"The United Nations had a meeting to talk about the problem.","circle":false},
   {"no":2344,"word":"United States","star":false,"pos":"名","meaning":"アメリカ合衆国(正式国名は、the United States of America)\n※U.S.（US）又は U.S.A.（USA） （省略語）","example":"I want to visit the United States to watch baseball.","circle":false},
   {"no":2345,"word":"university","star":false,"pos":"名","meaning":"（総合）大学","example":"I will go to university to study science.","circle":false},
