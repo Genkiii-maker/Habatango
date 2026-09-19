@@ -4,7 +4,7 @@ const WORDS01 = [
     "word": "a (an)",
     "star": true,
     "pos": "冠",
-    "meaning": "１つの、１人の\n（すぐ後ろの単語が母音で始まる時は、anを使う）",
+    "meaning": "１つの、１人の",
     "example": "I have a dog.",
     "circle": false
   },
