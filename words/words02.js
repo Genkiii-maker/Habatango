@@ -69,7 +69,7 @@ const WORDS02 = [
   {"no":168,"word":"banana","star":true,"pos":"名","meaning":"バナナ","example":"I eat a banana every morning.","circle":false},
   {"no":169,"word":"band","star":false,"pos":"名","meaning":"バンド、楽団    　※school band / brass band 吹奏楽部","example":"I play the guitar in a band.","circle":false},
   {"no":170,"word":"bank","star":false,"pos":"名","meaning":"銀行","example":"Go down this street and turn left at the bank.","circle":false},
-  {"no":171,"word":"barbecue","star":false,"pos":"名","meaning":"バーベキュー（barbequeのつづりもあり）","example":"Let's have a barbecue outside tomorrow.","circle":true},
+  {"no":171,"word":"barbecue（barbeque）","star":false,"pos":"名","meaning":"バーベキュー","example":"Let's have a barbecue outside tomorrow.","circle":true},
   {"no":172,"word":"barber","star":false,"pos":"名","meaning":"理髪師","example":"My brother is studying to become a barber.","circle":true},
   {"no":173,"word":"barrier","star":false,"pos":"名","meaning":"壁、障壁、柵","example":"We couldn't go into the area because there was a barrier.","circle":true},
   {"no":174,"word":"baseball","star":true,"pos":"名","meaning":"野球","example":"I like playing baseball.","circle":false},
