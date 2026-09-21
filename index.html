@@ -5,7 +5,27 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#172033">
 <title>はば単2500 WORD QUIZ ★</title>
-<style>
+.section-toggle{
+  width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  border:0;
+  background:transparent;
+  padding:0 2px 8px;
+  color:var(--muted);
+  font-size:13px;
+  font-weight:800;
+  cursor:pointer;
+}
+.section-toggle .arrow{
+  font-size:14px;
+  transition:.15s;
+}
+.section-toggle.open .arrow{
+  transform:rotate(180deg);
+}
+  <style>
 :root{--bg:#f4f7fb;--card:#fff;--ink:#182234;--muted:#6b7280;--line:#e5e9f0;--accent:#172033;--accent2:#3d5afe;--good:#12805c;--bad:#c23a3a;--shadow:0 14px 40px rgba(24,34,52,.08);}
 *{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;background:linear-gradient(180deg,#eef3f9 0,#f8fafc 46%,#f4f7fb 100%);color:var(--ink)}
 button,input,select{font:inherit}.wrap{max-width:760px;margin:auto;padding:18px 14px 34px}.hero{padding:18px 4px 12px}.eyebrow{font-size:12px;letter-spacing:.12em;color:var(--muted);font-weight:800}.hero h1{font-size:32px;line-height:1.08;margin:7px 0 6px}.hero p{margin:0;color:var(--muted)}
@@ -37,8 +57,13 @@ button,input,select{font:inherit}.wrap{max-width:760px;margin:auto;padding:18px 
       <div class="actions"><button class="primary" id="startBtn">テストを始める</button><button class="secondary" id="weakBtn">苦手単語だけでテスト</button></div>
       <div class="mini" style="margin-top:10px">※ 苦手単語・成績は、このブラウザ内に保存されます。</div>
     </div>
-    <div class="section-title">お気に入り</div>
-    <div class="card" id="favoriteList"><div class="mini">まだありません。クイズ中の ☆ をタップすると追加できます。</div></div>
+    <button class="section-toggle" id="favoriteToggle" type="button">
+  <span>お気に入り（0）</span>
+  <span class="arrow">▼</span>
+</button>
+<div class="card hidden" id="favoriteList">
+  <div class="mini">まだありません。クイズ中の ☆ をタップすると追加できます。</div>
+</div>
     <div class="section-title">苦手単語</div>
     <div class="card" id="weakList"><div class="mini">まだありません。間違えるとここに追加されます。</div>
   </section>
@@ -168,10 +193,26 @@ const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math
 function save(){localStorage.setItem(KEY,JSON.stringify(state));updateHome();}
 function updateHome(){$('wordCount').textContent=WORDS.length.toLocaleString();$('accuracy').textContent=state.answered?Math.round(state.correct/state.answered*100)+'%':'—';renderFavorites();renderWeak();}
 function renderFavorites(){
-  const ids=Object.keys(state.favorites).filter(id=>state.favorites[id]).map(Number).sort((a,b)=>a-b).slice(0,20);
+  const ids=Object.keys(state.favorites)
+    .filter(id=>state.favorites[id])
+    .map(Number)
+    .sort((a,b)=>a-b)
+    .slice(0,20);
+
   const box=$('favoriteList');
-  if(!ids.length){box.innerHTML='<div class="mini">まだありません。クイズ中の ☆ をタップすると追加できます。</div>';return;}
-  box.innerHTML=ids.map(id=>{const w=WORDS.find(x=>x.no==id);return w?`<div class="review-word"><div><b>${esc(w.word)}</b><div class="mini">${esc(w.meaning.replace(/\n/g,' / '))}</div></div><div class="mini">★</div></div>`:''}).join('');
+  const toggle=$('favoriteToggle');
+
+  toggle.querySelector('span:first-child').textContent=`お気に入り（${ids.length}）`;
+
+  if(!ids.length){
+    box.innerHTML='<div class="mini">まだありません。クイズ中の ☆ をタップすると追加できます。</div>';
+    return;
+  }
+
+  box.innerHTML=ids.map(id=>{
+    const w=WORDS.find(x=>x.no==id);
+    return w?`<div class="review-word"><div><b>${esc(w.word)}</b><div class="mini">${esc(w.meaning.replace(/\n/g,' / '))}</div></div><div class="mini">★</div></div>`:'';
+  }).join('');
 }
 function renderWeak(){const ids=Object.entries(state.wrong).filter(([,n])=>n>0).sort((a,b)=>b[1]-a[1]).slice(0,12);const box=$('weakList');if(!ids.length){box.innerHTML='<div class="mini">まだありません。間違えるとここに追加されます。</div>';return;}box.innerHTML=ids.map(([id,n])=>{const w=WORDS.find(x=>x.no==id);return w?`<div class="review-word"><div><b>${esc(w.word)}</b><div class="mini">${esc(w.meaning.replace(/\n/g,' / '))}</div></div><div class="mini">${n}回ミス</div></div>`:''}).join('');}
 function esc(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
