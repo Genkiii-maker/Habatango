@@ -5,7 +5,7 @@ const WORDS16 = [
   {"no":1504,"word":"OK","star":true,"pos":"形・間","meaning":"よろしい、オーケー（Okayのつづりもあり）  ※It's OK.  いいんですよ","example":"OK.  I will help you.","circle":false},
   {"no":1505,"word":"old","star":true,"pos":"形","meaning":"古い、～歳で","example":"There is an old tree in the garden.","circle":false},
   {"no":1506,"word":"Olympics","star":true,"pos":"名","meaning":"国際オリンピック競技会、オリンピック（Olympic Games とも言う）","example":"I want to attend the Olympics in the future.","circle":false},
-  {"no":1507,"word":"omelet","star":true,"pos":"名","meaning":"オムレツ（omeletteのつづりもあり）","example":"Do you know how to cook an omelet?","circle":true},
+  {"no":1507,"word":"omelet（omelette）","star":true,"pos":"名","meaning":"オムレツ","example":"Do you know how to cook an omelet?","circle":true},
   {"no":1508,"word":"on","star":true,"pos":"前・副","meaning":"①（時間）～に　\n②（接触）～の上に　\n③（状態）～で　\n④（手段・道具）～で　\n⑤（位置）～に面して　\n⑥（関連）～について、～に関する　\n⑦（所属）～に属して、～の一員で　\n⑧身につけて　 ※try on ～　～を試着する　\n～ and so on　～など","example":"①I was born on July 22.\n②Please put your hands on the desk.\n③I was on a bus at that time.\n④We can talk on the Internet.\n⑤You will see a big tree on your left.\n⑥I need information on animals.\n⑦I play on the soccer team.\n⑧I like this shirt.  May I try it on?","circle":false},
   {"no":1509,"word":"once","star":false,"pos":"接・副","meaning":"①（接）いったん～したからには\n②（副）１度、１回、かつて      ※at once  すぐに","example":"①Once you start playing games, you can't stop.\n②I have visited London once.","circle":false},
   {"no":1510,"word":"one","star":true,"pos":"名・代・形","meaning":"１つ（の）、人、それ、ある～    ※one by one  ひとつずつ","example":"How about this one?","circle":false},
