@@ -5,16 +5,388 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="theme-color" content="#172033">
 <title>はば単2500 WORD QUIZ ★</title>
-  <style>
-:root{--bg:#f4f7fb;--card:#fff;--ink:#182234;--muted:#6b7280;--line:#e5e9f0;--accent:#172033;--accent2:#3d5afe;--good:#12805c;--bad:#c23a3a;--shadow:0 14px 40px rgba(24,34,52,.08);}
-*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;background:linear-gradient(180deg,#eef3f9 0,#f8fafc 46%,#f4f7fb 100%);color:var(--ink)}
-button,input,select{font:inherit}.wrap{max-width:760px;margin:auto;padding:18px 14px 34px}.hero{padding:18px 4px 12px}.eyebrow{font-size:12px;letter-spacing:.12em;color:var(--muted);font-weight:800}.hero h1{font-size:32px;line-height:1.08;margin:7px 0 6px}.hero p{margin:0;color:var(--muted)}
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px;margin:14px 0}.card{background:rgba(255,255,255,.92);border:1px solid var(--line);border-radius:20px;box-shadow:var(--shadow);padding:16px}.stat b{display:block;font-size:25px;margin-top:4px}.stat span{font-size:12px;color:var(--muted)}
-.section-title{font-size:13px;font-weight:800;color:var(--muted);margin:18px 2px 8px}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}.row3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px}.field label{display:block;font-size:12px;color:var(--muted);margin:0 0 5px}.field select,.field input{width:100%;border:1px solid var(--line);border-radius:13px;padding:11px 12px;background:white;color:var(--ink)}
-.choice-row{display:flex;gap:8px;flex-wrap:wrap}.chip{border:1px solid var(--line);background:#fff;padding:9px 11px;border-radius:999px;font-size:13px;cursor:pointer}.chip.active{border-color:#bdc7ff;background:#eef1ff;color:#2330a8;font-weight:700}
-.primary,.secondary,.danger{width:100%;border:0;border-radius:15px;padding:14px 16px;cursor:pointer;font-weight:800}.primary{background:var(--accent);color:white}.secondary{background:#fff;border:1px solid var(--line);color:var(--ink)}.danger{background:#fff3f3;color:var(--bad);border:1px solid #ffd4d4}.actions{display:grid;gap:9px;margin-top:13px}
-.quizTop{display:flex;justify-content:space-between;align-items:center;font-size:12px;color:var(--muted);margin-bottom:9px}.bar{height:7px;background:#e9edf4;border-radius:999px;overflow:hidden}.fill{height:100%;background:var(--accent2);width:0;transition:.2s}.question{margin-top:18px;text-align:center;padding:26px 16px}.qmeta{font-size:12px;color:var(--muted);margin-bottom:10px}.qword{font-size:36px;font-weight:850;letter-spacing:.01em;line-height:1.12;word-break:break-word}.qword-row{display:flex;align-items:center;justify-content:center;gap:10px}.fav-btn{width:46px;height:46px;border:1px solid var(--line);background:#fff;border-radius:14px;cursor:pointer;font-size:24px;line-height:1;display:inline-flex;align-items:center;justify-content:center;transition:.15s}.fav-btn:hover{transform:translateY(-1px)}.fav-btn.active{background:#fff8dd;border-color:#f0cf63}.fav-btn:active{transform:scale(.96)}.choice-reveal{margin-top:14px;border:1px solid var(--line);background:linear-gradient(180deg,#f8fafc,#eef3f8);border-radius:16px;padding:28px 16px;cursor:pointer;color:var(--muted);font-weight:800;font-size:16px;letter-spacing:.02em;transition:.15s}.choice-reveal:hover{transform:translateY(-1px);background:#f3f6fa}.choice-reveal:active{transform:scale(.99)}.qjp{font-size:24px;font-weight:800;line-height:1.35}.pos{font-size:12px;color:var(--muted);margin-top:8px}.answers{display:grid;gap:10px;margin-top:15px}.ans{padding:15px;border:1px solid var(--line);background:#fff;border-radius:15px;text-align:left;cursor:pointer}.ans:hover{transform:translateY(-1px)}.ans.correct{border-color:#93d8be;background:#effbf6;color:#116447}.ans.wrong{border-color:#f0aaaa;background:#fff4f4;color:#9e3030}.feedback{margin-top:12px;padding:14px;border-radius:15px;display:none}.feedback.show{display:block}.feedback.good{background:#effbf6;color:#116447}.feedback.bad{background:#fff4f4;color:#9e3030}.ex{margin-top:8px;font-size:13px;color:var(--muted);white-space:pre-wrap}.spell{display:flex;gap:8px;margin-top:14px}.spell input{flex:1;border:1px solid var(--line);border-radius:14px;padding:14px 13px}.mini{font-size:12px;color:var(--muted)}.review-word{display:flex;justify-content:space-between;gap:12px;padding:12px 0;border-bottom:1px solid var(--line)}.review-word:last-child{border-bottom:0}.review-word b{font-size:17px}.hidden{display:none!important}
-@media(max-width:560px){.hero h1{font-size:28px}.qword{font-size:31px}.qjp{font-size:22px}.row3{grid-template-columns:1fr 1fr}.row3 .field:last-child{grid-column:1/-1}}
+
+<style>
+:root{
+  --bg:#f4f7fb;
+  --card:#fff;
+  --ink:#182234;
+  --muted:#6b7280;
+  --line:#e5e9f0;
+  --accent:#172033;
+  --accent2:#3d5afe;
+  --good:#12805c;
+  --bad:#c23a3a;
+  --shadow:0 14px 40px rgba(24,34,52,.08);
+}
+
+*{box-sizing:border-box}
+
+body{
+  margin:0;
+  font-family:system-ui,-apple-system,BlinkMacSystemFont,"Hiragino Sans","Yu Gothic",sans-serif;
+  background:linear-gradient(180deg,#eef3f9 0,#f8fafc 46%,#f4f7fb 100%);
+  color:var(--ink);
+}
+
+button,input,select{font:inherit}
+
+.wrap{
+  max-width:760px;
+  margin:auto;
+  padding:18px 14px 34px;
+}
+
+.hero{
+  padding:18px 4px 12px;
+}
+
+.eyebrow{
+  font-size:12px;
+  letter-spacing:.12em;
+  color:var(--muted);
+  font-weight:800;
+}
+
+.hero h1{
+  font-size:32px;
+  line-height:1.08;
+  margin:7px 0 6px;
+}
+
+.hero p{
+  margin:0;
+  color:var(--muted);
+}
+
+.grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:10px;
+  margin:14px 0;
+}
+
+.card{
+  background:rgba(255,255,255,.92);
+  border:1px solid var(--line);
+  border-radius:20px;
+  box-shadow:var(--shadow);
+  padding:16px;
+}
+
+.stat b{
+  display:block;
+  font-size:25px;
+  margin-top:4px;
+}
+
+.stat span{
+  font-size:12px;
+  color:var(--muted);
+}
+
+.section-title{
+  font-size:13px;
+  font-weight:800;
+  color:var(--muted);
+  margin:18px 2px 8px;
+}
+
+.row{
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:10px;
+}
+
+.row3{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr;
+  gap:10px;
+}
+
+.field label{
+  display:block;
+  font-size:12px;
+  color:var(--muted);
+  margin:0 0 5px;
+}
+
+.field select,
+.field input{
+  width:100%;
+  border:1px solid var(--line);
+  border-radius:13px;
+  padding:11px 12px;
+  background:white;
+  color:var(--ink);
+}
+
+.choice-row{
+  display:flex;
+  gap:8px;
+  flex-wrap:wrap;
+}
+
+.chip{
+  border:1px solid var(--line);
+  background:#fff;
+  padding:9px 11px;
+  border-radius:999px;
+  font-size:13px;
+  cursor:pointer;
+}
+
+.chip.active{
+  border-color:#bdc7ff;
+  background:#eef1ff;
+  color:#2330a8;
+  font-weight:700;
+}
+
+.primary,
+.secondary,
+.danger{
+  width:100%;
+  border:0;
+  border-radius:15px;
+  padding:14px 16px;
+  cursor:pointer;
+  font-weight:800;
+}
+
+.primary{
+  background:var(--accent);
+  color:white;
+}
+
+.secondary{
+  background:#fff;
+  border:1px solid var(--line);
+  color:var(--ink);
+}
+
+.danger{
+  background:#fff3f3;
+  color:var(--bad);
+  border:1px solid #ffd4d4;
+}
+
+.actions{
+  display:grid;
+  gap:9px;
+  margin-top:13px;
+}
+
+.quizTop{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:12px;
+  color:var(--muted);
+  margin-bottom:9px;
+}
+
+.bar{
+  height:7px;
+  background:#e9edf4;
+  border-radius:999px;
+  overflow:hidden;
+}
+
+.fill{
+  height:100%;
+  background:var(--accent2);
+  width:0;
+  transition:.2s;
+}
+
+.question{
+  margin-top:18px;
+  text-align:center;
+  padding:26px 16px;
+}
+
+.qmeta{
+  font-size:12px;
+  color:var(--muted);
+  margin-bottom:10px;
+}
+
+.qword{
+  font-size:36px;
+  font-weight:850;
+  letter-spacing:.01em;
+  line-height:1.12;
+  word-break:break-word;
+}
+
+.qword-row{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap:10px;
+}
+
+.fav-btn{
+  width:46px;
+  height:46px;
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:14px;
+  cursor:pointer;
+  font-size:24px;
+  line-height:1;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  transition:.15s;
+}
+
+.fav-btn:hover{
+  transform:translateY(-1px);
+}
+
+.fav-btn.active{
+  background:#fff8dd;
+  border-color:#f0cf63;
+}
+
+.fav-btn:active{
+  transform:scale(.96);
+}
+
+.choice-reveal{
+  margin-top:14px;
+  border:1px solid var(--line);
+  background:linear-gradient(180deg,#f8fafc,#eef3f8);
+  border-radius:16px;
+  padding:28px 16px;
+  cursor:pointer;
+  color:var(--muted);
+  font-weight:800;
+  font-size:16px;
+  letter-spacing:.02em;
+  transition:.15s;
+}
+
+.choice-reveal:hover{
+  transform:translateY(-1px);
+  background:#f3f6fa;
+}
+
+.choice-reveal:active{
+  transform:scale(.99);
+}
+
+.qjp{
+  font-size:24px;
+  font-weight:800;
+  line-height:1.35;
+}
+
+.pos{
+  font-size:12px;
+  color:var(--muted);
+  margin-top:8px;
+}
+
+.answers{
+  display:grid;
+  gap:10px;
+  margin-top:15px;
+}
+
+.ans{
+  padding:15px;
+  border:1px solid var(--line);
+  background:#fff;
+  border-radius:15px;
+  text-align:left;
+  cursor:pointer;
+}
+
+.ans:hover{
+  transform:translateY(-1px);
+}
+
+.ans.correct{
+  border-color:#93d8be;
+  background:#effbf6;
+  color:#116447;
+}
+
+.ans.wrong{
+  border-color:#f0aaaa;
+  background:#fff4f4;
+  color:#9e3030;
+}
+
+.feedback{
+  margin-top:12px;
+  padding:14px;
+  border-radius:15px;
+  display:none;
+}
+
+.feedback.show{
+  display:block;
+}
+
+.feedback.good{
+  background:#effbf6;
+  color:#116447;
+}
+
+.feedback.bad{
+  background:#fff4f4;
+  color:#9e3030;
+}
+
+.ex{
+  margin-top:8px;
+  font-size:13px;
+  color:var(--muted);
+  white-space:pre-wrap;
+}
+
+.spell{
+  display:flex;
+  gap:8px;
+  margin-top:14px;
+}
+
+.spell input{
+  flex:1;
+  border:1px solid var(--line);
+  border-radius:14px;
+  padding:14px 13px;
+}
+
+.mini{
+  font-size:12px;
+  color:var(--muted);
+}
+
+.review-word{
+  display:flex;
+  justify-content:space-between;
+  gap:12px;
+  padding:12px 0;
+  border-bottom:1px solid var(--line);
+}
+
+.review-word:last-child{
+  border-bottom:0;
+}
+
+.review-word b{
+  font-size:17px;
+}
+
+.hidden{
+  display:none!important;
+}
+
 .section-toggle{
   width:100%;
   display:flex;
@@ -28,59 +400,282 @@ button,input,select{font:inherit}.wrap{max-width:760px;margin:auto;padding:18px 
   font-weight:800;
   cursor:pointer;
 }
+
 .section-toggle .arrow{
   font-size:14px;
   transition:.15s;
 }
+
 .section-toggle.open .arrow{
   transform:rotate(180deg);
 }
-  </style></head>
+
+.filter-box{
+  max-height:220px;
+  overflow-y:auto;
+  padding-right:2px;
+}
+
+@media(max-width:560px){
+  .hero h1{font-size:28px}
+  .qword{font-size:31px}
+  .qjp{font-size:22px}
+
+  .row3{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .row3 .field:last-child{
+    grid-column:1/-1;
+  }
+}
+</style>
+</head>
+
 <body>
+
 <div class="wrap">
-  <section id="home">
-    <div class="hero"><div class="eyebrow">HYOGO ENGLISH WORD QUIZ</div><h1>はば単2500</h1><p>令和3年・第2版の2500語を、スマホでサクッとテスト。</p></div>
-    <div class="grid">
-      <div class="card stat"><span>登録語数</span><b id="wordCount">2500</b></div>
-      <div class="card stat"><span>累計正答率</span><b id="accuracy">—</b></div>
-    </div>
-    <div class="card">
-      <div class="section-title">出題モード</div>
-      <div class="row3">
-        <div class="field"><label>形式</label><select id="mode"><option value="en-jp">英語 → 日本語</option><option value="jp-en">日本語 → 英語</option><option value="spell">スペル入力</option><option value="cloze">例文・熟語穴埋め</option></select></div>
-        <div class="field"><label>問題数</label><select id="count"><option>10</option><option>20</option><option>50</option><option>100</option><option value="all">全範囲</option></select></div>
-              </div>
-      <div id="customRange" class="row hidden" style="margin-top:10px"><div class="field"><label>開始番号</label><input id="from" type="number" min="1" max="2500" value="1"></div><div class="field"><label>終了番号</label><input id="to" type="number" min="1" max="2500" value="2500"></div></div>
-      <div class="section-title">表示設定</div><div class="row" style="margin-bottom:12px"><label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input id="hideChoicesMode" type="checkbox" checked style="width:20px;height:20px"> 選択肢隠しモード</label></div><div class="section-title">絞り込み</div>
-      <div class="choice-row"><button class="chip active" data-filter="all">すべて</button><button class="chip" data-filter="weak">苦手単語</button><button class="chip" data-filter="favorite">お気に入り</button></div>
-      <div class="actions"><button class="primary" id="startBtn">テストを始める</button><button class="secondary" id="weakBtn">苦手単語だけでテスト</button></div>
-      <div class="mini" style="margin-top:10px">※ 苦手単語・成績は、このブラウザ内に保存されます。</div>
-    </div>
-    <button class="section-toggle" id="favoriteToggle" type="button">
-  <span>お気に入り（0）</span>
-  <span class="arrow">▼</span>
-</button>
-<div class="card hidden" id="favoriteList">
-  <div class="mini">まだありません。クイズ中の ☆ をタップすると追加できます。</div>
-</div>
-    <div class="section-title">苦手単語</div>
-    <div class="card" id="weakList"><div class="mini">まだありません。間違えるとここに追加されます。</div>
-  </section>
 
-  <section id="quiz" class="hidden">
-    <div class="quizTop"><span id="progressText">1 / 10</span><span id="scoreText">0問正解</span></div><div class="bar"><div id="barFill" class="fill"></div></div>
-    <div class="card question"><div id="qmeta" class="qmeta"></div><div class="qword-row"><div id="qmain" class="qword"></div><button id="favBtn" class="fav-btn" type="button" aria-label="お気に入りに追加" title="お気に入り">☆</button></div><div id="qpos" class="pos"></div><button id="choiceReveal" class="choice-reveal" type="button">選択肢を表示</button><div id="answers" class="answers hidden"></div><div id="spellBox" class="spell hidden"><input id="spellInput" autocomplete="off" autocapitalize="none" spellcheck="false" placeholder="英単語を入力"><button class="primary" id="spellSubmit" style="width:auto;min-width:92px">回答</button></div><div id="feedback" class="feedback"><b id="feedbackTitle"></b><div id="feedbackAnswer"></div><div id="feedbackEx" class="ex"></div></div></div>
-    <div class="actions"><button class="secondary" id="quitBtn">テストを終了</button></div>
-  </section>
+<section id="home">
 
-  <section id="result" class="hidden">
-    <div class="hero"><div class="eyebrow">RESULT</div><h1>テスト終了！</h1><p id="resultSub"></p></div>
-    <div class="grid"><div class="card stat"><span>正解数</span><b id="resultCorrect">0</b></div><div class="card stat"><span>正答率</span><b id="resultAcc">0%</b></div></div>
-    <div class="card"><div class="section-title" style="margin-top:0">今回の復習</div><div id="resultReview"></div></div>
-    <div class="actions"><button class="primary" id="againBtn">同じ条件でもう一度</button><button class="secondary" id="homeBtn">ホームへ戻る</button></div>
-  </section>
+  <div class="hero">
+    <div class="eyebrow">HYOGO ENGLISH WORD QUIZ</div>
+    <h1>はば単2500</h1>
+    <p>令和3年・第2版の2500語を、スマホでサクッとテスト。</p>
+  </div>
+
+  <div class="grid">
+    <div class="card stat">
+      <span>登録語数</span>
+      <b id="wordCount">2500</b>
+    </div>
+
+    <div class="card stat">
+      <span>累計正答率</span>
+      <b id="accuracy">—</b>
+    </div>
+  </div>
+
+  <div class="card">
+
+    <div class="section-title">出題モード</div>
+
+    <div class="row3">
+
+      <div class="field">
+        <label>形式</label>
+        <select id="mode">
+          <option value="en-jp">英語 → 日本語</option>
+          <option value="jp-en">日本語 → 英語</option>
+          <option value="spell">スペル入力</option>
+          <option value="cloze">例文・熟語穴埋め</option>
+        </select>
+      </div>
+
+      <div class="field">
+        <label>問題数</label>
+        <select id="count">
+          <option>10</option>
+          <option>20</option>
+          <option>50</option>
+          <option>100</option>
+          <option value="all">全範囲</option>
+        </select>
+      </div>
+
+    </div>
+
+    <div class="section-title">表示設定</div>
+
+    <div class="row" style="margin-bottom:12px">
+      <label style="display:flex;align-items:center;gap:10px;cursor:pointer">
+        <input
+          id="hideChoicesMode"
+          type="checkbox"
+          checked
+          style="width:20px;height:20px"
+        >
+        選択肢隠しモード
+      </label>
+    </div>
+
+    <div class="section-title">状態で絞り込み</div>
+
+    <div class="choice-row" id="statusFilters">
+      <button class="chip active" data-filter="all">すべて</button>
+      <button class="chip" data-filter="weak">苦手単語</button>
+      <button class="chip" data-filter="favorite">お気に入り</button>
+    </div>
+
+    <div class="section-title">品詞で絞り込み</div>
+
+    <div id="posFilters" class="choice-row filter-box"></div>
+
+    <div class="actions">
+      <button class="primary" id="startBtn">テストを始める</button>
+      <button class="secondary" id="weakBtn">苦手単語だけでテスト</button>
+    </div>
+
+    <div class="mini" style="margin-top:10px">
+      ※ 苦手単語・成績・お気に入りは、このブラウザ内に保存されます。
+    </div>
+
+  </div>
+
+  <button class="section-toggle" id="favoriteToggle" type="button">
+    <span>お気に入り（0）</span>
+    <span class="arrow">▼</span>
+  </button>
+
+  <div class="card hidden" id="favoriteList">
+    <div class="mini">
+      まだありません。クイズ中の ☆ をタップすると追加できます。
+    </div>
+  </div>
+
+  <div class="section-title">苦手単語</div>
+
+  <div class="card" id="weakList">
+    <div class="mini">
+      まだありません。間違えるとここに追加されます。
+    </div>
+  </div>
+
+</section>
+
+
+<section id="quiz" class="hidden">
+
+  <div class="quizTop">
+    <span id="progressText">1 / 10</span>
+    <span id="scoreText">0問正解</span>
+  </div>
+
+  <div class="bar">
+    <div id="barFill" class="fill"></div>
+  </div>
+
+  <div class="card question">
+
+    <div id="qmeta" class="qmeta"></div>
+
+    <div class="qword-row">
+
+      <div id="qmain" class="qword"></div>
+
+      <button
+        id="favBtn"
+        class="fav-btn"
+        type="button"
+        aria-label="お気に入りに追加"
+        title="お気に入り"
+      >
+        ☆
+      </button>
+
+    </div>
+
+    <div id="qpos" class="pos"></div>
+
+    <button
+      id="choiceReveal"
+      class="choice-reveal"
+      type="button"
+    >
+      選択肢を表示
+    </button>
+
+    <div id="answers" class="answers hidden"></div>
+
+    <div id="spellBox" class="spell hidden">
+      <input
+        id="spellInput"
+        autocomplete="off"
+        autocapitalize="none"
+        spellcheck="false"
+        placeholder="英単語を入力"
+      >
+
+      <button
+        class="primary"
+        id="spellSubmit"
+        style="width:auto;min-width:92px"
+      >
+        回答
+      </button>
+    </div>
+
+    <div id="feedback" class="feedback">
+
+      <b id="feedbackTitle"></b>
+
+      <div id="feedbackAnswer"></div>
+
+      <div id="feedbackEx" class="ex"></div>
+
+    </div>
+
+  </div>
+
+  <div class="actions">
+    <button class="secondary" id="quitBtn">
+      テストを終了
+    </button>
+  </div>
+
+</section>
+
+
+<section id="result" class="hidden">
+
+  <div class="hero">
+    <div class="eyebrow">RESULT</div>
+    <h1>テスト終了！</h1>
+    <p id="resultSub"></p>
+  </div>
+
+  <div class="grid">
+
+    <div class="card stat">
+      <span>正解数</span>
+      <b id="resultCorrect">0</b>
+    </div>
+
+    <div class="card stat">
+      <span>正答率</span>
+      <b id="resultAcc">0%</b>
+    </div>
+
+  </div>
+
+  <div class="card">
+
+    <div class="section-title" style="margin-top:0">
+      今回の復習
+    </div>
+
+    <div id="resultReview"></div>
+
+  </div>
+
+  <div class="actions">
+
+    <button class="primary" id="againBtn">
+      同じ条件でもう一度
+    </button>
+
+    <button class="secondary" id="homeBtn">
+      ホームへ戻る
+    </button>
+
+  </div>
+
+</section>
+
 </div>
-  <script src="words/words01.js"></script>
+
+
+<script src="words/words01.js"></script>
 <script src="words/words02.js"></script>
 <script src="words/words03.js"></script>
 <script src="words/words04.js"></script>
@@ -106,7 +701,9 @@ button,input,select{font:inherit}.wrap{max-width:760px;margin:auto;padding:18px 
 <script src="words/words24.js"></script>
 <script src="words/words25.js"></script>
 
+
 <script>
+
 const WORDS = [
   ...WORDS01,
   ...WORDS02,
@@ -134,196 +731,1513 @@ const WORDS = [
   ...WORDS24,
   ...WORDS25
 ];
-  
-function splitMeaningVariants(text) {
-  const cleaned = String(text || '').replace(/【活用】[^\n※]*/g, '').trim();
-  if (!cleaned) return [];
-  const parts = cleaned.split(/(?=(?:^|\n)\s*[①②③④⑤⑥⑦⑧⑨⑩])/u).map(x => x.trim()).filter(Boolean);
+
+
+function splitMeaningVariants(text){
+
+  const cleaned = String(text || '')
+    .replace(/【活用】[^\n※]*/g,'')
+    .trim();
+
+  if(!cleaned) return [];
+
+  const parts = cleaned
+    .split(/(?=(?:^|\n)\s*[①②③④⑤⑥⑦⑧⑨⑩])/u)
+    .map(x=>x.trim())
+    .filter(Boolean);
+
   return parts.length ? parts : [cleaned];
 }
-function normalize(s) {
-  return String(s ?? '').normalize('NFKC').replace(/[’‘]/g, "'").replace(/[“”]/g, '"').replace(/[‐‑‒–—−]/g, '-').replace(/\u00a0/g, ' ').replace(/[ \t\r\n]+/g, ' ').trim().toLowerCase();
+
+
+function normalize(s){
+
+  return String(s ?? '')
+    .normalize('NFKC')
+    .replace(/[’‘]/g,"'")
+    .replace(/[“”]/g,'"')
+    .replace(/[‐-‒–—−]/g,'-')
+    .replace(/\u00a0/g,' ')
+    .replace(/[ \t\r\n]+/g,' ')
+    .trim()
+    .toLowerCase();
 }
-function isComparisonWord(w) {
-  return new Set(['bad','better','best','good','least','less','little','many','more','most','much']).has(normalize(w.word));
+
+
+function isComparisonWord(w){
+
+  return new Set([
+    'bad',
+    'better',
+    'best',
+    'good',
+    'least',
+    'less',
+    'little',
+    'many',
+    'more',
+    'most',
+    'much'
+  ]).has(normalize(w.word));
+
 }
-function getConjugationEntries(w) {
-  const m = String(w.meaning || '').match(/【活用】\s*([^\n※]+)/u);
-  if (!m) return [];
-  const parts = m[1].split(/\s*-\s*/).map(x => x.trim()).filter(Boolean);
-  if (parts.length < 2) return [];
-  const existing = new Set(WORDS.map(x => normalize(x.word)));
-  const labels = isComparisonWord(w) ? ['比較級','最上級'] : ['過去形','過去分詞'];
+
+
+function getConjugationEntries(w){
+
+  const m = String(w.meaning || '')
+    .match(/【活用】\s*([^\n※]+)/u);
+
+  if(!m) return [];
+
+  const parts = m[1]
+    .split(/\s*-\s*/)
+    .map(x=>x.trim())
+    .filter(Boolean);
+
+  if(parts.length < 2) return [];
+
+  const existing = new Set(
+    WORDS.map(x=>normalize(x.word))
+  );
+
+  const labels = isComparisonWord(w)
+    ? ['比較級','最上級']
+    : ['過去形','過去分詞'];
+
   const out = [];
   const seenForms = new Set();
-  for (let i = 1; i < Math.min(parts.length, 3); i++) {
-    for (const form of parts[i].split('/').map(x => x.trim()).filter(Boolean)) {
+
+  for(let i=1;i<Math.min(parts.length,3);i++){
+
+    for(
+      const form
+      of parts[i]
+        .split('/')
+        .map(x=>x.trim())
+        .filter(Boolean)
+    ){
+
       const nform = normalize(form);
-      if (!nform || nform === normalize(w.word) || existing.has(nform) || seenForms.has(nform)) continue;
+
+      if(
+        !nform ||
+        nform === normalize(w.word) ||
+        existing.has(nform) ||
+        seenForms.has(nform)
+      ) continue;
+
       seenForms.add(nform);
-      out.push({id:`${w.no}-conj-${i}-${out.length}`,no:w.no,word:form,star:!!w.star,circle:!!w.circle,pos:w.pos,meaning:`${w.word}の${labels[i-1]}`,example:'',kind:'conjugation',sourceWord:w.word});
+
+      out.push({
+        id:`${w.no}-conj-${i}-${out.length}`,
+        no:w.no,
+        word:form,
+        star:!!w.star,
+        circle:!!w.circle,
+        pos:w.pos,
+        meaning:`${w.word}の${labels[i-1]}`,
+        example:'',
+        kind:'conjugation',
+        sourceWord:w.word
+      });
+
     }
+
   }
+
   return out;
 }
-function buildEntries() {
+
+
+function buildEntries(){
+
   const entries=[];
-  for(const w of WORDS) {
-    splitMeaningVariants(w.meaning).forEach((meaning,i)=>entries.push({id:`${w.no}-meaning-${i}`,no:w.no,word:w.word,star:!!w.star,circle:!!w.circle,pos:w.pos,meaning,example:w.example||'',kind:'meaning',sourceWord:w.word}));
+
+  for(const w of WORDS){
+
+    splitMeaningVariants(w.meaning)
+      .forEach((meaning,i)=>{
+
+        entries.push({
+          id:`${w.no}-meaning-${i}`,
+          no:w.no,
+          word:w.word,
+          star:!!w.star,
+          circle:!!w.circle,
+          pos:w.pos,
+          meaning,
+          example:w.example || '',
+          kind:'meaning',
+          sourceWord:w.word
+        });
+
+      });
+
     entries.push(...getConjugationEntries(w));
   }
+
   return entries;
 }
-const ENTRIES=buildEntries();
-const CLOZE=WORDS.flatMap(w=>{const word=String(w.word||'').trim();const example=String(w.example||'').trim();if(!word||!example)return[];const escaped=word.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');let re;try{re=new RegExp('(?<![A-Za-z0-9])'+escaped+'(?![A-Za-z0-9])','i')}catch(e){return[];}if(!re.test(example))return[];return[{id:w.no+'-cloze',no:Number(w.no),word,star:!!w.star,circle:!!w.circle,pos:w.pos,meaning:w.meaning,example,question:example.replace(re,'___'),kind:'cloze',sourceWord:word}];});
-const KEY='habatan2500-r3v2-progress';
-let state=JSON.parse(localStorage.getItem(KEY)||'null')||{answered:0,correct:0,wrong:{},favorites:{}};
-state.favorites=state.favorites||{};
-const $=id=>document.getElementById(id);
-let cfg={mode:'en-jp',count:10,range:'all',filter:'all',hideChoices:true};
-let choicesRevealed=false;
-const HIDE_KEY='habatan2500-hide-choices';
-const savedHide=localStorage.getItem(HIDE_KEY);
-if(savedHide!==null) cfg.hideChoices=savedHide==='1';
-$('hideChoicesMode').checked=cfg.hideChoices;
-$('hideChoicesMode').addEventListener('change',()=>{cfg.hideChoices=$('hideChoicesMode').checked;localStorage.setItem(HIDE_KEY,cfg.hideChoices?'1':'0');if(current&&!answered){choicesRevealed=false;updateChoiceReveal();}});
-let quiz=[],qi=0,score=0,current=null,answered=false;
-const shuffle=a=>{a=[...a];for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]]}return a};
-function save(){localStorage.setItem(KEY,JSON.stringify(state));updateHome();}
-function updateHome(){$('wordCount').textContent=WORDS.length.toLocaleString();$('accuracy').textContent=state.answered?Math.round(state.correct/state.answered*100)+'%':'—';renderFavorites();renderWeak();}
+
+
+const ENTRIES = buildEntries();
+
+
+const CLOZE = WORDS.flatMap(w=>{
+
+  const word = String(w.word || '').trim();
+  const example = String(w.example || '').trim();
+
+  if(!word || !example) return [];
+
+  const escaped = word.replace(
+    /[.*+?^${}()|[\]\\]/g,
+    '\\$&'
+  );
+
+  let re;
+
+  try{
+
+    re = new RegExp(
+      '(?<![A-Za-z0-9])' +
+      escaped +
+      '(?![A-Za-z0-9])',
+      'i'
+    );
+
+  }catch(e){
+    return [];
+  }
+
+  if(!re.test(example)) return [];
+
+  return [{
+    id:w.no+'-cloze',
+    no:Number(w.no),
+    word,
+    star:!!w.star,
+    circle:!!w.circle,
+    pos:w.pos,
+    meaning:w.meaning,
+    example,
+    question:example.replace(re,'___'),
+    kind:'cloze',
+    sourceWord:word
+  }];
+
+});
+
+
+const KEY = 'habatan2500-r3v2-progress';
+
+
+let state =
+  JSON.parse(localStorage.getItem(KEY) || 'null')
+  ||
+  {
+    answered:0,
+    correct:0,
+    wrong:{},
+    favorites:{}
+  };
+
+
+state.favorites = state.favorites || {};
+
+
+const $ = id => document.getElementById(id);
+
+
+let cfg = {
+  mode:'en-jp',
+  count:10,
+  pos:'all',
+  filter:'all',
+  hideChoices:true
+};
+
+
+let choicesRevealed = false;
+
+
+const HIDE_KEY = 'habatan2500-hide-choices';
+
+
+const savedHide = localStorage.getItem(HIDE_KEY);
+
+
+if(savedHide !== null){
+  cfg.hideChoices = savedHide === '1';
+}
+
+
+$('hideChoicesMode').checked = cfg.hideChoices;
+
+
+$('hideChoicesMode').addEventListener(
+  'change',
+  ()=>{
+    cfg.hideChoices = $('hideChoicesMode').checked;
+
+    localStorage.setItem(
+      HIDE_KEY,
+      cfg.hideChoices ? '1' : '0'
+    );
+
+    if(current && !answered){
+      choicesRevealed = false;
+      updateChoiceReveal();
+    }
+  }
+);
+
+
+let quiz = [];
+let qi = 0;
+let score = 0;
+let current = null;
+let answered = false;
+
+
+const shuffle = a => {
+
+  a = [...a];
+
+  for(
+    let i=a.length-1;
+    i>0;
+    i--
+  ){
+
+    const j = Math.floor(
+      Math.random() * (i+1)
+    );
+
+    [a[i],a[j]] =
+      [a[j],a[i]];
+
+  }
+
+  return a;
+};
+
+
+function save(){
+
+  localStorage.setItem(
+    KEY,
+    JSON.stringify(state)
+  );
+
+  updateHome();
+}
+
+
+function updateHome(){
+
+  $('wordCount').textContent =
+    WORDS.length.toLocaleString();
+
+  $('accuracy').textContent =
+    state.answered
+      ? Math.round(
+          state.correct /
+          state.answered *
+          100
+        ) + '%'
+      : '—';
+
+  renderFavorites();
+  renderWeak();
+}
+
+
 function renderFavorites(){
-  const ids=Object.keys(state.favorites)
-    .filter(id=>state.favorites[id])
-    .map(Number)
-    .sort((a,b)=>a-b)
-    .slice(0,20);
 
-  const box=$('favoriteList');
-  const toggle=$('favoriteToggle');
+  const ids =
+    Object.keys(state.favorites)
+      .filter(id=>state.favorites[id])
+      .map(Number)
+      .sort((a,b)=>a-b)
+      .slice(0,20);
 
-  toggle.querySelector('span:first-child').textContent=`お気に入り（${ids.length}）`;
+  const box = $('favoriteList');
+  const toggle = $('favoriteToggle');
+
+  toggle.querySelector(
+    'span:first-child'
+  ).textContent =
+    `お気に入り（${ids.length}）`;
 
   if(!ids.length){
-    box.innerHTML='<div class="mini">まだありません。クイズ中の ☆ をタップすると追加できます。</div>';
-    return;if(cfg.filter==='weak')p=p.filter(w=>state.wrong[w.no]);if(cfg.filter==='favorite')p=p.filter(w=>state.favorites[w.no]);return p;}
-function start(customFilter=null){cfg.mode=$('mode').value;cfg.count=$('count').value;cfg.if(customFilter)cfg.filter=customFilter;const p=buildPool();if(!p.length){alert('この条件では単語がありません。');return;}const n=cfg.count==='all'?p.length:Math.min(+cfg.count,p.length);quiz=shuffle(p).slice(0,n);qi=0;score=0;current=null;answered=false;$('home').classList.add('hidden');$('result').classList.add('hidden');$('quiz').classList.remove('hidden');showQuestion();}
-$('startBtn').onclick=()=>start();$('weakBtn').onclick=()=>{cfg.filter='weak';document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('active',x.dataset.filter==='weak'));start('weak');};
-function entryForms(entry){
-  const forms=[entry.word,entry.sourceWord];
-  const base=WORDS.find(w=>w.no==entry.no);
-  if(base) forms.push(...conjugation_forms_for_ui(base));
-  return [...new Set(forms.filter(Boolean))];
-}
-function conjugation_forms_for_ui(w){
-  const m=String(w.meaning||'').match(/【活用】\s*([^\n※]+)/u);
-  if(!m)return [];
-  const parts=m[1].split(/\s*-\s*/).map(x=>x.trim()).filter(Boolean);
-  if(parts.length<2)return [];
-  return parts.slice(1,3).flatMap(x=>x.split('/').map(v=>v.trim()).filter(Boolean));
-}
-function maskTargetText(text,entry){
-  let out=String(text||'');
-  for(const form of entryForms(entry).sort((a,b)=>b.length-a.length)){
-    const escForm=String(form).replace(/[.*+?^${}()|[\]\\]/g,'\\$&');
-    const re=new RegExp(`(?<![A-Za-z0-9])${escForm}(?![A-Za-z0-9])`,'gi');
-    out=out.replace(re,'___');
+
+    box.innerHTML =
+      '<div class="mini">まだありません。クイズ中の ☆ をタップすると追加できます。</div>';
+
+    return;
   }
-  return out;
-}
-function getMeaningText(entry){
-  // 過去形・過去分詞形などの活用形の選択肢では、元の語を伏せ字にしない。
-  // 例：have → 「haveの過去形」と表示し、「___の過去形」にはしない。
-  if(entry.kind==='conjugation') return entry.meaning;
-  return maskTargetText(entry.meaning,entry);
-}
-function getAnswerText(entry){
-  if(cfg.mode==='en-jp') return getMeaningText(entry);
-  return entry.word;
-}
-function getQuestionText(entry){
-  if(cfg.mode==='cloze') return entry.question;
-  if(cfg.mode==='jp-en'||cfg.mode==='spell') return getMeaningText(entry);
-  return entry.word;
-}
-function poolForChoices(){
-  return cfg.mode==='cloze'?CLOZE:ENTRIES;
-}
-function makeChoices(currentEntry){
-  const source=poolForChoices();
-  const answer=normalize(getAnswerText(currentEntry));
-  const out=[currentEntry],seen=new Set([answer]);
-  for(const e of shuffle(source.filter(e=>e.id!==currentEntry.id))){
-    const t=getAnswerText(e),nt=normalize(t);
-    if(!nt||seen.has(nt))continue;
-    seen.add(nt);out.push(e);
-    if(out.length===4)break;
-  }
-  return shuffle(out);
-}
-function isFavorite(entry){return !!state.favorites[entry?.no];}
-function updateFavoriteButton(){
-  const active=isFavorite(current);
-  const b=$('favBtn');
-  b.textContent=active?'★':'☆';
-  b.classList.toggle('active',active);
-  b.setAttribute('aria-label',active?'お気に入りから外す':'お気に入りに追加');
-  b.setAttribute('aria-pressed',active?'true':'false');
-}
-function updateChoiceReveal(){
-  const reveal=$('choiceReveal');
-  const hidden=!!cfg.hideChoices && !choicesRevealed;
-  reveal.classList.toggle('hidden',!hidden);
-  $('answers').classList.toggle('hidden',hidden);
-}
-$('choiceReveal').onclick=(e)=>{
-  e.stopPropagation();
-  choicesRevealed=true;
-  updateChoiceReveal();
-};
-$('favBtn').onclick=(e)=>{
-  e.stopPropagation();
-  if(!current)return;
-  if(state.favorites[current.no]) delete state.favorites[current.no];
-  else state.favorites[current.no]=true;
-  save();
-  updateFavoriteButton();
-};
-function showQuestion(){
-  answered=false;
-  choicesRevealed=false;
-  $('feedback').className='feedback';
-  $('spellBox').classList.add('hidden');
-  $('answers').innerHTML='';
-  $('spellInput').value='';
-  current=quiz[qi];
-  updateFavoriteButton();
-  $('progressText').textContent=`${qi+1} / ${quiz.length}`;
-  $('scoreText').textContent=`${score}問正解`;
-  $('barFill').style.width=(qi/quiz.length*100)+'%';
-  $('qmeta').textContent=`No.${current.no}${current.star?'  ☆':''}${current.circle?'  ○':''}${current.kind==='conjugation'?'  活用':''}${current.kind==='cloze'?'  穴埋め':''}`;
-  $('qmain').textContent=getQuestionText(current);
-  $('qpos').textContent=current.kind==='cloze'?'空所補充':current.pos;
-  updateChoiceReveal();
-  if(cfg.mode==='spell'){
-    $('choiceReveal').classList.add('hidden');
-    $('answers').classList.add('hidden');
-    $('spellBox').classList.remove('hidden');
-    $('spellInput').focus();
-  }else{
-    $('choiceReveal').classList.remove('hidden');
-    updateChoiceReveal();
-    const choices=makeChoices(current);
-    $('answers').innerHTML=choices.map(e=>`<button class="ans" data-entry-id="${esc(e.id)}">${esc(cfg.mode==='cloze'?e.word:getAnswerText(e)).replace(/\n/g,'<br>')}</button>`).join('');
-    document.querySelectorAll('.ans').forEach(b=>b.onclick=()=>{if(answered)goNext();else answer(b,b.dataset.entryId);});
-  }
+
+  box.innerHTML =
+    ids.map(id=>{
+
+      const w = WORDS.find(
+        x=>x.no == id
+      );
+
+      return w
+        ? `
+          <div class="review-word">
+            <div>
+              <b>${esc(w.word)}</b>
+              <div class="mini">
+                ${esc(
+                  String(w.meaning || '')
+                    .replace(/\n/g,' / ')
+                )}
+              </div>
+            </div>
+            <div class="mini">★</div>
+          </div>
+        `
+        : '';
+
+    }).join('');
 }
 
-function answer(btn,entryId){if(answered)return;const chosen=poolForChoices().find(e=>e.id===entryId);finishAnswer(!!chosen&&chosen.id===current.id,btn,getAnswerText(current));}
-$('spellSubmit').onclick=()=>{if(answered){goNext();return;}const txt=$('spellInput').value;finishAnswer(normalize(txt)===normalize(current.word),null,current.word);};
-$('spellInput').addEventListener('keydown',e=>{if(e.key==='Enter')$('spellSubmit').click()});
-function finishAnswer(ok,btn,correct){answered=true;state.answered++;if(ok){score++;state.correct++;if(cfg.filter==='weak')delete state.wrong[current.no];}else state.wrong[current.no]=(state.wrong[current.no]||0)+1;save();if(btn){document.querySelectorAll('.ans').forEach(b=>{if(b.dataset.entryId===current.id)b.classList.add('correct')});if(!ok)btn.classList.add('wrong');}$('feedback').className='feedback show '+(ok?'good':'bad');$('feedbackTitle').textContent=ok?'✅ 正解！':'❌ おしい！';$('feedbackAnswer').innerHTML=ok?'':`正解：<b>${esc(correct)}</b>`;$('feedbackEx').textContent=current.example?`例文：${current.kind==='cloze'?current.example:maskTargetText(current.example,current)}`:'';$('barFill').style.width=((qi+1)/quiz.length*100)+'%';}
-function goNext(){if(!answered)return;if(qi+1>=quiz.length)finishQuiz();else{qi++;showQuestion()}}
-function finishQuiz(){$('quiz').classList.add('hidden');$('result').classList.remove('hidden');const acc=Math.round(score/quiz.length*100);$('resultCorrect').textContent=`${score} / ${quiz.length}`;$('resultAcc').textContent=acc+'%';$('resultSub').textContent=acc===100?'パーフェクト！':acc>=80?'いい感じ！':'間違えた単語をもう一度やってみよう。';const wrong=quiz.filter(w=>state.wrong[w.no]>0).slice(0,20);$('resultReview').innerHTML=wrong.length?wrong.map(w=>`<div class="review-word"><div><b>${esc(w.word)}</b><div class="mini">${esc(w.meaning.replace(/\n/g,' / '))}</div></div></div>`).join(''):'<div class="mini">今回のミスはありません！</div>';}
-$('againBtn').onclick=()=>start();$('homeBtn').onclick=()=>{$('result').classList.add('hidden');$('home').classList.remove('hidden');updateHome()};$('quitBtn').onclick=()=>{$('quiz').classList.add('hidden');$('home').classList.remove('hidden');updateHome()};
+
+$('favoriteToggle').onclick = ()=>{
+
+  const box = $('favoriteList');
+  const toggle = $('favoriteToggle');
+
+  const isHidden =
+    box.classList.toggle('hidden');
+
+  toggle.classList.toggle(
+    'open',
+    !isHidden
+  );
+
+};
+
+
+function renderWeak(){
+
+  const ids =
+    Object.entries(state.wrong)
+      .filter(([,n])=>n>0)
+      .sort((a,b)=>b[1]-a[1])
+      .slice(0,12);
+
+  const box = $('weakList');
+
+  if(!ids.length){
+
+    box.innerHTML =
+      '<div class="mini">まだありません。間違えるとここに追加されます。</div>';
+
+    return;
+  }
+
+  box.innerHTML =
+    ids.map(([id,n])=>{
+
+      const w = WORDS.find(
+        x=>x.no==id
+      );
+
+      return w
+        ? `
+          <div class="review-word">
+            <div>
+              <b>${esc(w.word)}</b>
+              <div class="mini">
+                ${esc(
+                  String(w.meaning || '')
+                    .replace(/\n/g,' / ')
+                )}
+              </div>
+            </div>
+            <div class="mini">
+              ${n}回ミス
+            </div>
+          </div>
+        `
+        : '';
+
+    }).join('');
+}
+
+
+function esc(s){
+
+  return String(s).replace(
+    /[&<>'"]/g,
+    c=>({
+      '&':'&amp;',
+      '<':'&lt;',
+      '>':'&gt;',
+      "'":'&#39;',
+      '"':'&quot;'
+    }[c])
+  );
+
+}
+
+
+/* =========================
+   品詞フィルター
+========================= */
+
+const POS_LABELS = {
+  '名':'名詞',
+  '動':'動詞',
+  '形':'形容詞',
+  '副':'副詞',
+  '前':'前置詞',
+  '接':'接続詞',
+  '代':'代名詞',
+  '冠':'冠詞',
+  '助':'助動詞',
+  '間':'間投詞',
+  '疑':'疑問詞'
+};
+
+
+const POS_ORDER = [
+  '名',
+  '動',
+  '形',
+  '副',
+  '前',
+  '接',
+  '代',
+  '冠',
+  '助',
+  '間',
+  '疑'
+];
+
+
+function getAllPos(){
+
+  const set = new Set();
+
+  WORDS.forEach(w=>{
+
+    String(w.pos || '')
+      .split(/[・、/]/)
+      .forEach(x=>{
+
+        x = x.trim();
+
+        if(x){
+          set.add(x);
+        }
+
+      });
+
+  });
+
+  return [...set];
+}
+
+
+function renderPosFilters(){
+
+  const box = $('posFilters');
+
+  const all = getAllPos();
+
+  const ordered = [
+    ...POS_ORDER.filter(
+      x=>all.includes(x)
+    ),
+    ...all.filter(
+      x=>!POS_ORDER.includes(x)
+    )
+  ];
+
+  box.innerHTML =
+    '<button class="chip active" data-pos="all">すべて</button>' +
+
+    ordered
+      .map(
+        p=>`
+          <button
+            class="chip"
+            data-pos="${esc(p)}"
+          >
+            ${esc(POS_LABELS[p] || p)}
+          </button>
+        `
+      )
+      .join('');
+
+
+  box.querySelectorAll('.chip')
+    .forEach(b=>{
+
+      b.onclick = ()=>{
+
+        box.querySelectorAll('.chip')
+          .forEach(x=>
+            x.classList.remove('active')
+          );
+
+        b.classList.add('active');
+
+        cfg.pos = b.dataset.pos;
+      };
+
+    });
+
+}
+
+
+/* =========================
+   出題プール
+========================= */
+
+function buildPool(){
+
+  let p =
+    cfg.mode === 'cloze'
+      ? CLOZE
+      : ENTRIES;
+
+
+  if(cfg.pos !== 'all'){
+
+    p = p.filter(w=>{
+
+      return String(w.pos || '')
+        .split(/[・、/]/)
+        .some(
+          x=>x.trim() === cfg.pos
+        );
+
+    });
+
+  }
+
+
+  if(cfg.filter === 'weak'){
+
+    p = p.filter(
+      w=>state.wrong[w.no]
+    );
+
+  }
+
+
+  if(cfg.filter === 'favorite'){
+
+    p = p.filter(
+      w=>state.favorites[w.no]
+    );
+
+  }
+
+
+  return p;
+}
+
+
+/* =========================
+   状態フィルター
+========================= */
+
+document
+  .querySelectorAll('#statusFilters .chip')
+  .forEach(b=>{
+
+    b.onclick = ()=>{
+
+      document
+        .querySelectorAll('#statusFilters .chip')
+        .forEach(x=>
+          x.classList.remove('active')
+        );
+
+      b.classList.add('active');
+
+      cfg.filter =
+        b.dataset.filter;
+    };
+
+  });
+
+
+/* =========================
+   クイズ開始
+========================= */
+
+function start(customFilter=null){
+
+  cfg.mode = $('mode').value;
+  cfg.count = $('count').value;
+
+
+  if(customFilter){
+    cfg.filter = customFilter;
+  }
+
+
+  const p = buildPool();
+
+
+  if(!p.length){
+
+    alert(
+      'この条件では単語がありません。'
+    );
+
+    return;
+  }
+
+
+  const n =
+    cfg.count === 'all'
+      ? p.length
+      : Math.min(
+          +cfg.count,
+          p.length
+        );
+
+
+  quiz =
+    shuffle(p).slice(0,n);
+
+  qi = 0;
+  score = 0;
+  current = null;
+  answered = false;
+
+
+  $('home')
+    .classList.add('hidden');
+
+  $('result')
+    .classList.add('hidden');
+
+  $('quiz')
+    .classList.remove('hidden');
+
+
+  showQuestion();
+}
+
+
+$('startBtn').onclick =
+  ()=>start();
+
+
+$('weakBtn').onclick = ()=>{
+
+  cfg.filter = 'weak';
+
+  document
+    .querySelectorAll('#statusFilters .chip')
+    .forEach(
+      x=>
+        x.classList.toggle(
+          'active',
+          x.dataset.filter === 'weak'
+        )
+    );
+
+  start('weak');
+
+};
+
+
+/* =========================
+   活用形
+========================= */
+
+function conjugation_forms_for_ui(w){
+
+  const m =
+    String(w.meaning || '')
+      .match(
+        /【活用】\s*([^\n※]+)/u
+      );
+
+  if(!m) return [];
+
+
+  const parts =
+    m[1]
+      .split(/\s*-\s*/)
+      .map(x=>x.trim())
+      .filter(Boolean);
+
+
+  if(parts.length < 2){
+    return [];
+  }
+
+
+  return parts
+    .slice(1,3)
+    .flatMap(
+      x=>
+        x
+          .split('/')
+          .map(v=>v.trim())
+          .filter(Boolean)
+    );
+
+}
+
+
+function entryForms(entry){
+
+  const forms = [
+    entry.word,
+    entry.sourceWord
+  ];
+
+
+  const base =
+    WORDS.find(
+      w=>w.no==entry.no
+    );
+
+
+  if(base){
+
+    forms.push(
+      ...conjugation_forms_for_ui(base)
+    );
+
+  }
+
+
+  return [
+    ...new Set(
+      forms.filter(Boolean)
+    )
+  ];
+
+}
+
+
+function maskTargetText(text,entry){
+
+  let out =
+    String(text || '');
+
+
+  for(
+    const form
+    of entryForms(entry)
+      .sort(
+        (a,b)=>b.length-a.length
+      )
+  ){
+
+    const escForm =
+      String(form).replace(
+        /[.*+?^${}()|[\]\\]/g,
+        '\\$&'
+      );
+
+
+    const re =
+      new RegExp(
+        `(?<![A-Za-z0-9])${escForm}(?![A-Za-z0-9])`,
+        'gi'
+      );
+
+
+    out =
+      out.replace(
+        re,
+        '___'
+      );
+
+  }
+
+
+  return out;
+}
+
+
+function getMeaningText(entry){
+
+  if(entry.kind === 'conjugation'){
+    return entry.meaning;
+  }
+
+  return maskTargetText(
+    entry.meaning,
+    entry
+  );
+
+}
+
+
+function getAnswerText(entry){
+
+  if(cfg.mode === 'en-jp'){
+    return getMeaningText(entry);
+  }
+
+  return entry.word;
+}
+
+
+function getQuestionText(entry){
+
+  if(cfg.mode === 'cloze'){
+    return entry.question;
+  }
+
+  if(
+    cfg.mode === 'jp-en' ||
+    cfg.mode === 'spell'
+  ){
+
+    return getMeaningText(entry);
+
+  }
+
+  return entry.word;
+}
+
+
+/* =========================
+   選択肢
+========================= */
+
+function poolForChoices(){
+
+  return cfg.mode === 'cloze'
+    ? CLOZE
+    : ENTRIES;
+}
+
+
+function makeChoices(currentEntry){
+
+  const source =
+    poolForChoices();
+
+
+  const answer =
+    normalize(
+      getAnswerText(currentEntry)
+    );
+
+
+  const out = [
+    currentEntry
+  ];
+
+
+  const seen =
+    new Set([answer]);
+
+
+  for(
+    const e
+    of shuffle(
+      source.filter(
+        e=>e.id !== currentEntry.id
+      )
+    )
+  ){
+
+    const t =
+      getAnswerText(e);
+
+    const nt =
+      normalize(t);
+
+
+    if(!nt || seen.has(nt)){
+      continue;
+    }
+
+
+    seen.add(nt);
+
+    out.push(e);
+
+
+    if(out.length === 4){
+      break;
+    }
+
+  }
+
+
+  return shuffle(out);
+}
+
+
+/* =========================
+   お気に入り
+========================= */
+
+function isFavorite(entry){
+
+  return !!state.favorites[
+    entry?.no
+  ];
+
+}
+
+
+function updateFavoriteButton(){
+
+  const active =
+    isFavorite(current);
+
+
+  const b =
+    $('favBtn');
+
+
+  b.textContent =
+    active ? '★' : '☆';
+
+
+  b.classList.toggle(
+    'active',
+    active
+  );
+
+
+  b.setAttribute(
+    'aria-label',
+    active
+      ? 'お気に入りから外す'
+      : 'お気に入りに追加'
+  );
+
+
+  b.setAttribute(
+    'aria-pressed',
+    active
+      ? 'true'
+      : 'false'
+  );
+
+}
+
+
+/* =========================
+   選択肢表示
+========================= */
+
+function updateChoiceReveal(){
+
+  const reveal =
+    $('choiceReveal');
+
+
+  const hidden =
+    !!cfg.hideChoices &&
+    !choicesRevealed;
+
+
+  reveal.classList.toggle(
+    'hidden',
+    !hidden
+  );
+
+
+  $('answers')
+    .classList.toggle(
+      'hidden',
+      hidden
+    );
+
+}
+
+
+$('choiceReveal').onclick =
+  e=>{
+
+    e.stopPropagation();
+
+    choicesRevealed = true;
+
+    updateChoiceReveal();
+
+  };
+
+
+$('favBtn').onclick =
+  e=>{
+
+    e.stopPropagation();
+
+    if(!current){
+      return;
+    }
+
+
+    if(state.favorites[current.no]){
+
+      delete state.favorites[current.no];
+
+    }else{
+
+      state.favorites[current.no] = true;
+
+    }
+
+
+    save();
+
+    updateFavoriteButton();
+
+  };
+
+
+/* =========================
+   問題表示
+========================= */
+
+function showQuestion(){
+
+  answered = false;
+  choicesRevealed = false;
+
+
+  $('feedback').className =
+    'feedback';
+
+
+  $('spellBox')
+    .classList.add('hidden');
+
+
+  $('answers').innerHTML = '';
+
+
+  $('spellInput').value = '';
+
+
+  current = quiz[qi];
+
+
+  updateFavoriteButton();
+
+
+  $('progressText').textContent =
+    `${qi+1} / ${quiz.length}`;
+
+
+  $('scoreText').textContent =
+    `${score}問正解`;
+
+
+  $('barFill').style.width =
+    (qi / quiz.length * 100) + '%';
+
+
+  $('qmeta').textContent =
+    `No.${current.no}` +
+    `${current.star ? '  ☆' : ''}` +
+    `${current.circle ? '  ○' : ''}` +
+    `${current.kind === 'conjugation' ? '  活用' : ''}` +
+    `${current.kind === 'cloze' ? '  穴埋め' : ''}`;
+
+
+  $('qmain').textContent =
+    getQuestionText(current);
+
+
+  $('qpos').textContent =
+    current.kind === 'cloze'
+      ? '空所補充'
+      : current.pos;
+
+
+  updateChoiceReveal();
+
+
+  if(cfg.mode === 'spell'){
+
+    $('choiceReveal')
+      .classList.add('hidden');
+
+    $('answers')
+      .classList.add('hidden');
+
+    $('spellBox')
+      .classList.remove('hidden');
+
+    $('spellInput').focus();
+
+  }else{
+
+    $('choiceReveal')
+      .classList.remove('hidden');
+
+    updateChoiceReveal();
+
+
+    const choices =
+      makeChoices(current);
+
+
+    $('answers').innerHTML =
+      choices
+        .map(
+          e=>`
+            <button
+              class="ans"
+              data-entry-id="${esc(e.id)}"
+            >
+              ${
+                esc(
+                  cfg.mode === 'cloze'
+                    ? e.word
+                    : getAnswerText(e)
+                )
+                .replace(/\n/g,'<br>')
+              }
+            </button>
+          `
+        )
+        .join('');
+
+
+    document
+      .querySelectorAll('.ans')
+      .forEach(
+        b=>
+          b.onclick =
+            ()=>{
+              if(answered){
+                goNext();
+              }else{
+                answer(
+                  b,
+                  b.dataset.entryId
+                );
+              }
+            }
+      );
+
+  }
+
+}
+
+
+/* =========================
+   回答
+========================= */
+
+function answer(btn,entryId){
+
+  if(answered){
+    return;
+  }
+
+
+  const chosen =
+    poolForChoices()
+      .find(
+        e=>e.id === entryId
+      );
+
+
+  finishAnswer(
+    !!chosen &&
+      chosen.id === current.id,
+    btn,
+    getAnswerText(current)
+  );
+
+}
+
+
+$('spellSubmit').onclick =
+  ()=>{
+
+    if(answered){
+
+      goNext();
+
+      return;
+    }
+
+
+    const txt =
+      $('spellInput').value;
+
+
+    finishAnswer(
+      normalize(txt) ===
+        normalize(current.word),
+      null,
+      current.word
+    );
+
+  };
+
+
+$('spellInput')
+  .addEventListener(
+    'keydown',
+    e=>{
+      if(e.key === 'Enter'){
+        $('spellSubmit').click();
+      }
+    }
+  );
+
+
+function finishAnswer(
+  ok,
+  btn,
+  correct
+){
+
+  answered = true;
+
+
+  state.answered++;
+
+
+  if(ok){
+
+    score++;
+
+    state.correct++;
+
+
+    if(cfg.filter === 'weak'){
+
+      delete state.wrong[
+        current.no
+      ];
+
+    }
+
+  }else{
+
+    state.wrong[current.no] =
+      (state.wrong[current.no] || 0) + 1;
+
+  }
+
+
+  save();
+
+
+  if(btn){
+
+    document
+      .querySelectorAll('.ans')
+      .forEach(
+        b=>{
+          if(
+            b.dataset.entryId ===
+            current.id
+          ){
+
+            b.classList.add('correct');
+
+          }
+        }
+      );
+
+
+    if(!ok){
+      btn.classList.add('wrong');
+    }
+
+  }
+
+
+  $('feedback').className =
+    'feedback show ' +
+    (ok ? 'good' : 'bad');
+
+
+  $('feedbackTitle').textContent =
+    ok
+      ? '✅ 正解！'
+      : '❌ おしい！';
+
+
+  $('feedbackAnswer').innerHTML =
+    ok
+      ? ''
+      : `正解：<b>${esc(correct)}</b>`;
+
+
+  $('feedbackEx').textContent =
+    current.example
+      ? `例文：${
+          current.kind === 'cloze'
+            ? current.example
+            : maskTargetText(
+                current.example,
+                current
+              )
+        }`
+      : '';
+
+
+  $('barFill').style.width =
+    ((qi+1) /
+      quiz.length *
+      100) +
+    '%';
+
+}
+
+
+/* =========================
+   次の問題
+========================= */
+
+function goNext(){
+
+  if(!answered){
+    return;
+  }
+
+
+  if(qi + 1 >= quiz.length){
+
+    finishQuiz();
+
+  }else{
+
+    qi++;
+
+    showQuestion();
+
+  }
+
+}
+
+
+/* =========================
+   結果
+========================= */
+
+function finishQuiz(){
+
+  $('quiz')
+    .classList.add('hidden');
+
+
+  $('result')
+    .classList.remove('hidden');
+
+
+  const acc =
+    Math.round(
+      score /
+      quiz.length *
+      100
+    );
+
+
+  $('resultCorrect').textContent =
+    `${score} / ${quiz.length}`;
+
+
+  $('resultAcc').textContent =
+    acc + '%';
+
+
+  $('resultSub').textContent =
+    acc === 100
+      ? 'パーフェクト！'
+      : acc >= 80
+        ? 'いい感じ！'
+        : '間違えた単語をもう一度やってみよう。';
+
+
+  const wrong =
+    quiz
+      .filter(
+        w=>state.wrong[w.no] > 0
+      )
+      .slice(0,20);
+
+
+  $('resultReview').innerHTML =
+    wrong.length
+
+      ? wrong
+          .map(
+            w=>`
+              <div class="review-word">
+                <div>
+                  <b>${esc(w.word)}</b>
+                  <div class="mini">
+                    ${esc(
+                      String(w.meaning || '')
+                        .replace(
+                          /\n/g,
+                          ' / '
+                        )
+                    )}
+                  </div>
+                </div>
+              </div>
+            `
+          )
+          .join('')
+
+      : '<div class="mini">今回のミスはありません！</div>';
+
+}
+
+
+$('againBtn').onclick =
+  ()=>start();
+
+
+$('homeBtn').onclick =
+  ()=>{
+
+    $('result')
+      .classList.add('hidden');
+
+    $('home')
+      .classList.remove('hidden');
+
+    updateHome();
+
+  };
+
+
+$('quitBtn').onclick =
+  ()=>{
+
+    $('quiz')
+      .classList.add('hidden');
+
+    $('home')
+      .classList.remove('hidden');
+
+    updateHome();
+
+  };
+
+
+/* 初期化 */
+
+renderPosFilters();
 updateHome();
-</script></body></html>
+
+</script>
+
+</body>
+</html>
