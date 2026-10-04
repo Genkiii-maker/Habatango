@@ -167,7 +167,7 @@ function getConjugationEntries(w) {
   return out;
 }
 function buildEntries() {
-  const entries=[];、
+  const entries=[];
   for(const w of WORDS) {
     splitMeaningVariants(w.meaning).forEach((meaning,i)=>entries.push({id:`${w.no}-meaning-${i}`,no:w.no,word:w.word,star:!!w.star,circle:!!w.circle,pos:w.pos,meaning,example:w.example||'',kind:'meaning',sourceWord:w.word}));
     entries.push(...getConjugationEntries(w));
@@ -205,27 +205,8 @@ function renderFavorites(){
 
   if(!ids.length){
     box.innerHTML='<div class="mini">まだありません。クイズ中の ☆ をタップすると追加できます。</div>';
-    return;
-  }
-
-  box.innerHTML=ids.map(id=>{
-    const w=WORDS.find(x=>x.no==id);
-    return w?`<div class="review-word"><div><b>${esc(w.word)}</b><div class="mini">${esc(w.meaning.replace(/\n/g,' / '))}</div></div><div class="mini">★</div></div>`:'';
-  }).join('');
-}
-
-$('favoriteToggle').onclick=()=>{
-  const box=$('favoriteList');
-  const toggle=$('favoriteToggle');
-  const isHidden=box.classList.toggle('hidden');
-  toggle.classList.toggle('open',!isHidden);
-};
-function renderWeak(){const ids=Object.entries(state.wrong).filter(([,n])=>n>0).sort((a,b)=>b[1]-a[1]).slice(0,12);const box=$('weakList');if(!ids.length){box.innerHTML='<div class="mini">まだありません。間違えるとここに追加されます。</div>';return;}box.innerHTML=ids.map(([id,n])=>{const w=WORDS.find(x=>x.no==id);return w?`<div class="review-word"><div><b>${esc(w.word)}</b><div class="mini">${esc(w.meaning.replace(/\n/g,' / '))}</div></div><div class="mini">${n}回ミス</div></div>`:''}).join('');}
-function esc(s){return String(s).replace(/[&<>'"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));}
-$('range').addEventListener('change',()=>{$('customRange').classList.toggle('hidden',$('range').value!=='custom')});
-document.querySelectorAll('.chip').forEach(b=>b.addEventListener('click',()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.remove('active'));b.classList.add('active');cfg.filter=b.dataset.filter;}));
-function buildPool(){let p=cfg.mode==='cloze'?CLOZE:ENTRIES;if(cfg.range==='custom'){let a=Math.min(2500,Math.max(1,+$('from').value||1)),b=Math.min(2500,Math.max(1,+$('to').value||2500));if(a>b)[a,b]=[b,a];p=p.filter(w=>w.no>=a&&w.no<=b)}else if(cfg.range!=='all'){const [a,b]=cfg.range.split('-').map(Number);p=p.filter(w=>w.no>=a&&w.no<=b)}if(cfg.filter==='star')p=p.filter(w=>w.star);if(cfg.filter==='circle')p=p.filter(w=>w.circle);if(cfg.filter==='weak')p=p.filter(w=>state.wrong[w.no]);if(cfg.filter==='favorite')p=p.filter(w=>state.favorites[w.no]);return p;}
-function start(customFilter=null){cfg.mode=$('mode').value;cfg.count=$('count').value;cfg.range=$('range').value;if(customFilter)cfg.filter=customFilter;const p=buildPool();if(!p.length){alert('この条件では単語がありません。');return;}const n=cfg.count==='all'?p.length:Math.min(+cfg.count,p.length);quiz=shuffle(p).slice(0,n);qi=0;score=0;current=null;answered=false;$('home').classList.add('hidden');$('result').classList.add('hidden');$('quiz').classList.remove('hidden');showQuestion();}
+    return;if(cfg.filter==='weak')p=p.filter(w=>state.wrong[w.no]);if(cfg.filter==='favorite')p=p.filter(w=>state.favorites[w.no]);return p;}
+function start(customFilter=null){cfg.mode=$('mode').value;cfg.count=$('count').value;cfg.if(customFilter)cfg.filter=customFilter;const p=buildPool();if(!p.length){alert('この条件では単語がありません。');return;}const n=cfg.count==='all'?p.length:Math.min(+cfg.count,p.length);quiz=shuffle(p).slice(0,n);qi=0;score=0;current=null;answered=false;$('home').classList.add('hidden');$('result').classList.add('hidden');$('quiz').classList.remove('hidden');showQuestion();}
 $('startBtn').onclick=()=>start();$('weakBtn').onclick=()=>{cfg.filter='weak';document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('active',x.dataset.filter==='weak'));start('weak');};
 function entryForms(entry){
   const forms=[entry.word,entry.sourceWord];
