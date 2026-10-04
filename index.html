@@ -49,11 +49,10 @@ button,input,select{font:inherit}.wrap{max-width:760px;margin:auto;padding:18px 
       <div class="row3">
         <div class="field"><label>形式</label><select id="mode"><option value="en-jp">英語 → 日本語</option><option value="jp-en">日本語 → 英語</option><option value="spell">スペル入力</option><option value="cloze">例文・熟語穴埋め</option></select></div>
         <div class="field"><label>問題数</label><select id="count"><option>10</option><option>20</option><option>50</option><option>100</option><option value="all">全範囲</option></select></div>
-        <div class="field"><label>出題範囲</label><select id="range"><option value="all">1〜2500</option><option value="1-500">1〜500</option><option value="501-1000">501〜1000</option><option value="1001-1500">1001〜1500</option><option value="1501-2000">1501〜2000</option><option value="2001-2500">2001〜2500</option><option value="custom">番号を指定</option></select></div>
-      </div>
+              </div>
       <div id="customRange" class="row hidden" style="margin-top:10px"><div class="field"><label>開始番号</label><input id="from" type="number" min="1" max="2500" value="1"></div><div class="field"><label>終了番号</label><input id="to" type="number" min="1" max="2500" value="2500"></div></div>
       <div class="section-title">表示設定</div><div class="row" style="margin-bottom:12px"><label style="display:flex;align-items:center;gap:10px;cursor:pointer"><input id="hideChoicesMode" type="checkbox" checked style="width:20px;height:20px"> 選択肢隠しモード</label></div><div class="section-title">絞り込み</div>
-      <div class="choice-row"><button class="chip active" data-filter="all">すべて</button><button class="chip" data-filter="star">☆ 小学校から</button><button class="chip" data-filter="circle">○ 追加語</button><button class="chip" data-filter="weak">苦手単語</button><button class="chip" data-filter="favorite">お気に入り</button></div>
+      <div class="choice-row"><button class="chip active" data-filter="all">すべて</button><button class="chip" data-filter="weak">苦手単語</button><button class="chip" data-filter="favorite">お気に入り</button></div>
       <div class="actions"><button class="primary" id="startBtn">テストを始める</button><button class="secondary" id="weakBtn">苦手単語だけでテスト</button></div>
       <div class="mini" style="margin-top:10px">※ 苦手単語・成績は、このブラウザ内に保存されます。</div>
     </div>
@@ -168,7 +167,7 @@ function getConjugationEntries(w) {
   return out;
 }
 function buildEntries() {
-  const entries=[];
+  const entries=[];、
   for(const w of WORDS) {
     splitMeaningVariants(w.meaning).forEach((meaning,i)=>entries.push({id:`${w.no}-meaning-${i}`,no:w.no,word:w.word,star:!!w.star,circle:!!w.circle,pos:w.pos,meaning,example:w.example||'',kind:'meaning',sourceWord:w.word}));
     entries.push(...getConjugationEntries(w));
