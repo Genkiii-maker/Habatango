@@ -458,6 +458,11 @@ button,input,select{font:inherit}
       <span>累計正答率</span>
       <b id="accuracy">—</b>
     </div>
+    
+    <div class="card stat">
+  <span>今日の練習数</span>
+  <b id="todayPractice">0</b>
+    </div>
   </div>
 
   <div class="card">
@@ -944,7 +949,7 @@ let state =
     answered:0,
     correct:0,
     wrong:{},
-    favorites:{}
+    favorites:{},
     dailyPractice:{}
   };
 
