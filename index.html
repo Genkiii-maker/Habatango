@@ -428,6 +428,10 @@ button,input,select{font:inherit}
   .row3 .field:last-child{
     grid-column:1/-1;
   }
+
+  .stats-home{
+    grid-template-columns:1fr 1fr;
+  }
 }
 </style>
 </head>
@@ -444,7 +448,7 @@ button,input,select{font:inherit}
     <p>令和3年・第2版の2500語を、スマホでサクッとテスト。</p>
   </div>
 
-  <div class="grid">
+  <div class="grid stats-home">
     <div class="card stat">
       <span>登録語数</span>
       <b id="wordCount">2500</b>
@@ -941,11 +945,30 @@ let state =
     correct:0,
     wrong:{},
     favorites:{}
+    dailyPractice:{}
   };
 
 
 state.favorites = state.favorites || {};
+state.dailyPractice = state.dailyPractice || {};
 
+
+function getTodayKey(){
+
+  const d = new Date();
+
+  const y = d.getFullYear();
+  const m = String(d.getMonth()+1).padStart(2,'0');
+  const day = String(d.getDate()).padStart(2,'0');
+
+  return `${y}-${m}-${day}`;
+}
+
+
+function getTodayPractice(){
+
+  return state.dailyPractice[getTodayKey()] || 0;
+}
 
 const $ = id => document.getElementById(id);
 
@@ -1049,6 +1072,9 @@ function updateHome(){
         ) + '%'
       : '—';
 
+$('todayPractice').textContent =
+    getTodayPractice().toLocaleString();
+  
   renderFavorites();
   renderWeak();
 }
@@ -2004,7 +2030,10 @@ function finishAnswer(
 ){
 
   answered = true;
+const today = getTodayKey();
 
+  state.dailyPractice[today] =
+    (state.dailyPractice[today] || 0) + 1;
 
   state.answered++;
 
