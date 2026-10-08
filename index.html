@@ -450,11 +450,6 @@ button,input,select{font:inherit}
 
   <div class="grid stats-home">
     <div class="card stat">
-      <span>登録語数</span>
-      <b id="wordCount">2500</b>
-    </div>
-
-    <div class="card stat">
       <span>累計正答率</span>
       <b id="accuracy">—</b>
     </div>
@@ -1064,9 +1059,6 @@ function save(){
 
 
 function updateHome(){
-
-  $('wordCount').textContent =
-    WORDS.length.toLocaleString();
 
   $('accuracy').textContent =
     state.answered
