@@ -447,7 +447,9 @@ button,input,select{font:inherit}
     <h1>はば単2500</h1>
     <p>令和3年・第2版の2500語を、スマホでサクッとテスト。</p>
   </div>
-
+  
+  <a class="secondary" href="idiom/index.html" style="display:block;text-align:center;text-decoration:none;margin:0 0 12px;">熟語クイズへ →</a>
+  
   <div class="grid stats-home">
     <div class="card stat">
       <span>累計正答率</span>
@@ -503,14 +505,6 @@ button,input,select{font:inherit}
       </label>
     </div>
 
-    <div class="section-title">状態で絞り込み</div>
-
-    <div class="choice-row" id="statusFilters">
-      <button class="chip active" data-filter="all">すべて</button>
-      <button class="chip" data-filter="weak">苦手単語</button>
-      <button class="chip" data-filter="favorite">お気に入り</button>
-    </div>
-
     <div class="section-title">品詞で絞り込み</div>
 
     <div id="posFilters" class="choice-row filter-box"></div>
@@ -518,6 +512,7 @@ button,input,select{font:inherit}
     <div class="actions">
       <button class="primary" id="startBtn">テストを始める</button>
       <button class="secondary" id="weakBtn">苦手単語だけでテスト</button>
+      <button class="secondary" id="favoriteBtn">お気に入りだけでテスト</button>
     </div>
 
     <div class="mini" style="margin-top:10px">
