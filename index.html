@@ -1365,31 +1365,6 @@ function buildPool(){
 
 
 /* =========================
-   状態フィルター
-========================= */
-
-document
-  .querySelectorAll('#statusFilters .chip')
-  .forEach(b=>{
-
-    b.onclick = ()=>{
-
-      document
-        .querySelectorAll('#statusFilters .chip')
-        .forEach(x=>
-          x.classList.remove('active')
-        );
-
-      b.classList.add('active');
-
-      cfg.filter =
-        b.dataset.filter;
-    };
-
-  });
-
-
-/* =========================
    クイズ開始
 ========================= */
 
@@ -1449,26 +1424,23 @@ function start(customFilter=null){
 }
 
 
-$('startBtn').onclick =
-  ()=>start();
+/* =========================
+   テスト開始ボタン
+========================= */
 
+// すべての単語から出題
+$('startBtn').onclick = ()=>{
+  start('all');
+};
 
+// 苦手単語だけから出題
 $('weakBtn').onclick = ()=>{
-
-  cfg.filter = 'weak';
-
-  document
-    .querySelectorAll('#statusFilters .chip')
-    .forEach(
-      x=>
-        x.classList.toggle(
-          'active',
-          x.dataset.filter === 'weak'
-        )
-    );
-
   start('weak');
+};
 
+// お気に入りだけから出題
+$('favoriteBtn').onclick = ()=>{
+  start('favorite');
 };
 
 
