@@ -52,8 +52,44 @@ function normalize(s){return String(s??'').normalize('NFKC').replace(/[’‘]/g
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function escapeRegExp(s){return String(s).replace(/[-/\\^$*+?.()|[\]{}]/g,'\\$&');}
 function extractAutoIdioms(){const out=[];for(const w of WORDS){const chunks=String(w.meaning||'').matchAll(/※([^※\r\n]+)/gu);let index=0;for(const found of chunks){const chunk=found[1].trim();index++;if(!chunk)continue;const split=chunk.match(/^(.+?)[ \t　]+(?=～?[ぁ-んァ-ヶ一-龠])/u);if(!split)continue;const phrase=split[1].trim();const meaning=chunk.slice(split[0].length).trim();if(!phrase||!meaning)continue;out.push({id:'auto-'+w.no+'-'+index,phrase,meaning,example:'',source:w.word+'（No.'+w.no+'）',kind:'auto'});}}return out;}
-function buildIdioms(){const map=new Map();for(const item of extractAutoIdioms())map.set(normalize(item.phrase),item);for(let i=0;i<(Array.isArray(MANUAL_IDIOMS)?MANUAL_IDIOMS.length:0);i++){const item=MANUAL_IDIOMS[i];if(!item||!item.phrase||!item.meaning)continue;map.set(normalize(item.phrase),{...item,id:'manual-'+(i+1),source:item.source||'手動登録',kind:'manual'});}return [...map.values()].filter(x=>normalize(x.phrase)&&normalize(x.meaning)).map(x=>({...x,key:normalize(x.phrase)})).sort((a,b)=>a.phrase.localeCompare(b.phrase));}
-const IDIOMS=buildIdioms();
+function cleanIdiomMeaning(s){
+  return String(s ?? '')
+    .replace(/\s*【活用】[^※\r\n]*/gu, '')
+    .trim();
+}
+
+function buildIdioms(){
+  const map = new Map();
+
+  for (const item of extractAutoIdioms()) {
+    map.set(normalize(item.phrase), item);
+  }
+
+  for (
+    let i = 0;
+    i < (Array.isArray(MANUAL_IDIOMS) ? MANUAL_IDIOMS.length : 0);
+    i++
+  ) {
+    const item = MANUAL_IDIOMS[i];
+    if (!item || !item.phrase || !item.meaning) continue;
+
+    map.set(normalize(item.phrase), {
+      ...item,
+      id: 'manual-' + (i + 1),
+      source: item.source || '手動登録',
+      kind: 'manual'
+    });
+  }
+
+  return [...map.values()]
+    .map(x => ({
+      ...x,
+      meaning: cleanIdiomMeaning(x.meaning),
+      key: normalize(x.phrase)
+    }))
+    .filter(x => normalize(x.phrase) && normalize(x.meaning))
+    .sort((a, b) => a.phrase.localeCompare(b.phrase));
+}const IDIOMS=buildIdioms();
 const MANUAL_KEYS=new Set((Array.isArray(MANUAL_IDIOMS)?MANUAL_IDIOMS:[]).filter(x=>x&&x.phrase).map(x=>normalize(x.phrase)));
 const KEY='habatan2500-idiom-progress-v1',HIDE_KEY='habatan2500-idiom-hide-choices';
 let state;try{state=JSON.parse(localStorage.getItem(KEY)||'null');}catch(e){state=null;}state=state||{answered:0,correct:0,wrong:{},favorites:{},dailyPractice:{}};state.wrong=state.wrong||{};state.favorites=state.favorites||{};state.dailyPractice=state.dailyPractice||{};
