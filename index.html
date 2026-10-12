@@ -1079,7 +1079,6 @@ function renderFavorites(){
       .filter(id=>state.favorites[id])
       .map(Number)
       .sort((a,b)=>a-b)
-      .slice(0,20);
 
   const box = $('favoriteList');
   const toggle = $('favoriteToggle');
