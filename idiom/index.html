@@ -51,8 +51,67 @@ const $=id=>document.getElementById(id);
 function normalize(s){return String(s??'').normalize('NFKC').replace(/[’‘]/g,"'").replace(/[“”]/g,'"').replace(/[‐-‒–—−]/g,'-').replace(/\u00a0/g,' ').replace(/[ \t\r\n]+/g,' ').trim().toLowerCase();}
 function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
 function escapeRegExp(s){return String(s).replace(/[-/\\^$*+?.()|[\]{}]/g,'\\$&');}
-function extractAutoIdioms(){const out=[];for(const w of WORDS){const chunks=String(w.meaning||'').matchAll(/※([^※\r\n]+)/gu);let index=0;for(const found of chunks){const chunk=found[1].trim();index++;if(!chunk)continue;const split=chunk.match(/^(.+?)[ \t　]+(?=～?[ぁ-んァ-ヶ一-龠])/u);if(!split)continue;const phrase=split[1].trim();const meaning=chunk.slice(split[0].length).trim();if(!phrase||!meaning)continue;out.push({id:'auto-'+w.no+'-'+index,phrase,meaning,example:'',source:w.word+'（No.'+w.no+'）',kind:'auto'});}}return out;}
-function cleanIdiomMeaning(s){
+function extractAutoIdioms(){
+  const out = [];
+
+  for (const w of WORDS) {
+    const raw = String(w.meaning || '');
+    const activity = raw.search(/【活用】/u);
+    const sourceText =
+      activity >= 0 ? raw.slice(0, activity) : raw;
+
+    const markers = [...sourceText.matchAll(/※/gu)];
+
+    for (let groupIndex = 0;
+         groupIndex < markers.length;
+         groupIndex++) {
+
+      const start = markers[groupIndex].index + 1;
+      const end = groupIndex + 1 < markers.length
+        ? markers[groupIndex + 1].index
+        : sourceText.length;
+
+      const group = sourceText.slice(start, end).trim();
+      if (!group) continue;
+
+      // 空白や改行で区切られた熟語を個別に抽出
+      const chunks = group.split(
+        /(?:[ \t]{2,}|　+|\r?\n+)[ \t　]*(?=[A-Za-z])/gu
+      );
+
+      let itemIndex = 0;
+
+      for (const rawChunk of chunks) {
+        const chunk = rawChunk.trim();
+        if (!chunk) continue;
+
+        // 英語表現と日本語の意味を分離
+        const split = chunk.match(
+          /^(.+?)[ \t　]+(?=～?[0-9０-９ぁ-んァ-ヶ一-龠（）「『【])/u
+        );
+
+        if (!split) continue;
+
+        const phrase = split[1].trim();
+        const meaning = chunk.slice(split[0].length).trim();
+
+        if (!phrase || !meaning) continue;
+
+        out.push({
+          id: 'auto-' + w.no + '-' +
+              (groupIndex + 1) + '-' + (++itemIndex),
+          phrase,
+          meaning,
+          example: '',
+          source: w.word + '（No.' + w.no + '）',
+          kind: 'auto'
+        });
+      }
+    }
+  }
+
+  return out;
+}function cleanIdiomMeaning(s){
   return String(s ?? '')
     .replace(/\s*【活用】[^※\r\n]*/gu, '')
     .trim();
