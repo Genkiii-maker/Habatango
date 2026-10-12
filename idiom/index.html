@@ -93,8 +93,11 @@ function extractAutoIdioms(){
         if (!split) continue;
 
         const phrase = split[1].trim();
-        const meaning = chunk.slice(split[0].length).trim();
-
+        const meaning = chunk
+  .slice(split[0].length)
+  .split(/[①-⑳]/u)[0]
+  .trim();
+        
         if (!phrase || !meaning) continue;
 
         out.push({
